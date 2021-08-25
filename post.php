@@ -37,7 +37,7 @@ if (!isset($type)){ //type(renk) yoksa belirleme
 if (!isset($title)){ //title yoksa belirleme
     $title = "Cthulhu's Unknown Secrets";
 }
-if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])):
+if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])): //Eğer bu dosyaya erişilmek istenirse, default değerler olarak belirlediğimiz şekilde 1 adet article değeri gösterilir.
  ?> <div style="background-color:<?php echo $color ?>;"><?php getPostDetails($id,$title);?></div>
 <?php endif ?>
 
