@@ -20,3 +20,32 @@
  * dosyasını döngü içinde dahil etmeli ve her yazı için detayları göstermelisiniz.
  */
 
+include_once "functions.php";
+include_once "post.php";
+
+$random_post_count = getRandomPostCount(1,15); //1-15 Arasında rastgele bir tamsayı alıyoruz ve bunu random_post değişkenine atıyoruz
+$latest_posts_get = getLatestPosts($random_post_count); //Postları bir değişken halinde alıyoruz
+?>
+
+<div>
+    <?php foreach ($latest_posts_get as $id => $value): ?>
+        
+     <?php
+
+     if ($value["type"] == "urgent"){
+       $color = 'red';
+     }
+     elseif ($value["type"] == "warning"){
+       $color = 'yellow';
+     }
+     elseif ($value["type"] == "normal"){
+       $color = 'white';
+     } 
+
+   ?>
+   <div style="background-color:<?php echo $color ?>;"><?php getPostDetails($id, $value['title']);?></div>
+   <?php  endforeach; ?>
+
+</div>
+
+

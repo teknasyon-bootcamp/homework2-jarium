@@ -16,6 +16,14 @@
  * bekliyoruz. Bununla ilgili detaylı bilgi diğer betiklerde yer alıyor.
  */
 
+// Eğer bu sayfaya direk erişmek için bir istek almışsak,
+// ekrana 'Bu dosyaya erişim sağlayamazsınız' mesajı verilir ve program sonlanır.
+
+if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) { //Bu dosyanın ismi ile, erişmek istediğiniz adresin ismi aynı olursa erişime izin verilmeyecektir
+    echo "Bu dosyaya erişim sağlayamazsınız";
+    exit();
+}
+
 function getLatestPosts($count = 5)
 {
     $posts = [];
@@ -49,3 +57,6 @@ EOT;
 
 // Aşağıya fonksiyonu tanımlayabilirsiniz.
 
+function getRandomPostCount($min, $max){ // Belirtilen iki değer arasında rastgele bir tam sayı döndürür.
+    return rand($min,$max);
+}

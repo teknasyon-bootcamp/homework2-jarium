@@ -23,3 +23,24 @@
  * - `getPostDetails` fonksiyonu tetiklenerek ilgili içeriğin çıktısı gösterilmeli.
  */
 
+include_once "functions.php";
+
+//Eğer id, title, type yoksa değerlerini belirliyoruz
+
+if (!isset($id)){ //id yoksa belirleme
+    $id = 1;
+}
+if (!isset($type)){ //type(renk) yoksa belirleme
+    $type = "urgent";
+    $color = "red";
+}
+if (!isset($title)){ //title yoksa belirleme
+    $title = "Cthulhu's Unknown Secrets";
+}
+if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])):
+ ?> <div style="background-color:<?php echo $color ?>;"><?php getPostDetails($id,$title);?></div>
+<?php endif ?>
+
+
+
+
