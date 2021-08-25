@@ -32,16 +32,17 @@ $latest_posts_get = getLatestPosts($random_post_count); //Postları bir değişk
         
      <?php
 
-     if ($value["type"] == "urgent"){
+     if ($value["type"] == "urgent"){ //eğer type değeri urgent ise renk kırmızı olarak belirlenir
        $color = 'red';
      }
-     elseif ($value["type"] == "warning"){
+     elseif ($value["type"] == "warning"){ //eğer type değeri warning ise renk sarı olarak belirlenir
        $color = 'yellow';
      }
-     elseif ($value["type"] == "normal"){
+     elseif ($value["type"] == "normal"){ //eğer type değeri normal ise renk beyaz olarak belirlenir
        $color = 'white';
      } 
 
+//Postlarımızı sayılarına, renklerine, id'lerine ve isinmlerine göre ekranda gösteririz
    ?>
    <div style="background-color:<?php echo $color ?>;"><?php getPostDetails($id, $value['title']);?></div>
    <?php  endforeach; ?>
