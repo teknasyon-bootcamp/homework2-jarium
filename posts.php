@@ -21,32 +21,18 @@
  */
 
 include_once "functions.php";
-include_once "post.php";
 
 $random_post_count = getRandomPostCount(1,15); //1-15 Arasında rastgele bir tamsayı alıyoruz ve bunu random_post değişkenine atıyoruz
 $latest_posts_get = getLatestPosts($random_post_count); //Postları bir değişken halinde alıyoruz
-?>
 
-<div>
-    <?php foreach ($latest_posts_get as $id => $value): ?>
-        
-     <?php
 
-     if ($value["type"] == "urgent"){ //eğer type değeri urgent ise renk kırmızı olarak belirlenir
-       $color = 'red';
-     }
-     elseif ($value["type"] == "warning"){ //eğer type değeri warning ise renk sarı olarak belirlenir
-       $color = 'yellow';
-     }
-     elseif ($value["type"] == "normal"){ //eğer type değeri normal ise renk beyaz olarak belirlenir
-       $color = 'white';
-     } 
+foreach ($latest_posts_get as $id => $value){ //Postları id key değerine ve value değerlerine göre bir for loopa alıyoruz.
+  $title = $value["title"]; //post.php deki title değerimiz buradaki key value (title) değerimiz olarak belirleniyor
+  $type = $value["type"]; // post.php deki type değerimiz buradaki key value (type) değerimiz olarak belirleniyor
+  include "post.php"; //post.php yi dahil ediyoruz. For loop sayesinde posts.php açıldığında 1-15 arasında değeri belirlenmiş postlarımız ekrana basılıyor.
+}
 
-//Postlarımızı sayılarına, renklerine, id'lerine ve isinmlerine göre ekranda gösteririz
-   ?>
-   <div style="background-color:<?php echo $color ?>;"><?php getPostDetails($id, $value['title']);?></div>
-   <?php  endforeach; ?>
 
-</div>
+
 
 

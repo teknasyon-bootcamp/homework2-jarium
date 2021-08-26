@@ -25,21 +25,28 @@
 
 include_once "functions.php";
 
-//Eğer id, title, type yoksa değerlerini belirliyoruz
 
 if (!isset($id)){ //id yoksa belirleme
-    $id = 1;
-}
-if (!isset($type)){ //type(renk) yoksa belirleme
-    $type = "urgent";
-    $color = "red";
+     $id = 1;
 }
 if (!isset($title)){ //title yoksa belirleme
     $title = "Cthulhu's Unknown Secrets";
 }
-if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])): //Eğer bu dosyaya erişilmek istenirse, default değerler olarak belirlediğimiz şekilde 1 adet article değeri gösterilir.
- ?> <div style="background-color:<?php echo $color ?>;"><?php getPostDetails($id,$title);?></div>
-<?php endif ?>
+if (!isset($type)){ //type(renk) yoksa belirleme
+    $type = "urgent";
+}
+switch ($type){ //Switch ile renk belirlemesi yapacağız
+    case "urgent": //Urgent ise color değişkeni kırmızı olur
+        $color = "red";
+        break ;
+    case "warning": //Warning ise color değişkeni sarı olur
+        $color = "yellow";
+        break;
+    case "normal": //Normal ise color değişkeni beyaz olur
+        $color = "white";
+        break;
+}
+?> <div style="background-color:<?php echo $color ?>;"><?php getPostDetails($id,$title);?></div> <?php //Ekrana değerimiz bastırılır
 
 
 
